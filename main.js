@@ -237,7 +237,7 @@ async function addCutMarker(y) {
     await new Promise(resolve => setTimeout(resolve, 100));
 
     try {
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 600));
 
         const markersContainer = document.getElementById('cutMarkers');
         const marker = document.createElement('div');
@@ -336,7 +336,8 @@ async function downloadAllImages() {
 
     slicedImages.forEach((dataUrl, index) => {
         const imageData = dataUrl.split(',')[1];
-        zip.file(`image_${index + 1}.jpg`, imageData, {base64: true});
+        const formattedIndex = String(index + 1).padStart(2, '0');
+        zip.file(`${formattedIndex}.jpg`, imageData, {base64: true});
     });
 
     const content = await zip.generateAsync({type: "blob"});
