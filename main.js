@@ -6,15 +6,12 @@ let currentImageIndex = 0;
 
 // Modal elements
 const modal = document.getElementById('previewModal');
-const modalImage = document.getElementById('modalImage');
 const closeModal = document.getElementById('closeModal');
 
-// Update modal elements và thêm nút điều hướng
 function updateModalUI() {
     const modal = document.getElementById('previewModal');
     const modalContent = modal.querySelector('div');
 
-    // Thêm nút điều hướng nếu chưa có
     if (!document.getElementById('prevButton')) {
         const prevButton = document.createElement('button');
         prevButton.id = 'prevButton';
@@ -47,7 +44,7 @@ function updateModalUI() {
     }
 }
 
-// Cập nhật lại hàm showModal
+
 function showModal(imageUrl, index = 0) {
     currentImageIndex = index;
     const modal = document.getElementById('previewModal');
@@ -55,25 +52,22 @@ function showModal(imageUrl, index = 0) {
 
     updateModalUI();
 
-    // Cập nhật UI
     modal.style.display = 'flex';
     modalImage.src = imageUrl;
     document.body.style.overflow = 'hidden';
     updateImageCounter();
     updateNavigationButtons();
 
-    // Thêm event listeners
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
 
     prevButton.onclick = showPreviousImage;
     nextButton.onclick = showNextImage;
 
-    // Thêm keyboard navigation
     document.addEventListener('keydown', handleKeyPress);
 }
 
-// Cập nhật số thứ tự ảnh
+
 function updateImageCounter() {
     const counter = document.getElementById('imageCounter');
     if (counter) {
@@ -81,7 +75,7 @@ function updateImageCounter() {
     }
 }
 
-// Cập nhật trạng thái nút điều hướng
+
 function updateNavigationButtons() {
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
@@ -95,7 +89,7 @@ function updateNavigationButtons() {
     }
 }
 
-// Điều hướng ảnh
+
 function showPreviousImage() {
     currentImageIndex = (currentImageIndex - 1 + slicedImages.length) % slicedImages.length;
     document.getElementById('modalImage').src = slicedImages[currentImageIndex];
@@ -108,7 +102,7 @@ function showNextImage() {
     updateImageCounter();
 }
 
-// Xử lý phím
+
 function handleKeyPress(e) {
     switch(e.key) {
         case 'ArrowLeft':
@@ -123,7 +117,7 @@ function handleKeyPress(e) {
     }
 }
 
-// Cập nhật hàm hideModal
+
 function hideModal() {
     const modal = document.getElementById('previewModal');
     const modalImage = document.getElementById('modalImage');
